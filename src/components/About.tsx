@@ -1,15 +1,16 @@
 "use client";
 import { Paragraph } from "@/components/Paragraph";
+import { Highlight } from "./Highlight";
 import Image from "next/image";
-
+import React from "react";
 import { motion } from "framer-motion";
 
 export default function About() {
   const images = [
-    "https://images.unsplash.com/photo-1692544350322-ac70cfd63614?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=800&q=60",
-    "https://images.unsplash.com/photo-1692374227159-2d3592f274c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=800&q=60",
-    "https://images.unsplash.com/photo-1692005561659-cdba32d1e4a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    "https://images.unsplash.com/photo-1692445381633-7999ebc03730?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzM3x8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
+    "/images/about/profile1.jpeg",
+    "/images/about/profile2.jpeg",
+    "/images/about/profile3.jpeg",
+    "/images/about/profile4.png",
   ];
   return (
     <div>
@@ -34,7 +35,8 @@ export default function About() {
               width={200}
               height={400}
               alt="about"
-              className="rounded-md object-cover transform rotate-3 shadow-xl block w-full h-40 md:h-60 hover:rotate-0 transition duration-200"
+              // className="rounded-md object-cover transform rotate-3 shadow-xl block w-full h-40 md:h-60 hover:rotate-0 transition duration-200"
+              className="rounded-2xl object-cover transform rotate-3 shadow-xl block w-full h-40 md:h-60 hover:rotate-0 hover:scale-105 transition duration-300"
             />
           </motion.div>
         ))}
@@ -71,48 +73,46 @@ export default function About() {
 
       <div className="max-w-4xl">
         <Paragraph className=" mt-4">
-          Hey there, I&apos;m John Doe - a passionate developer, avid writer,
-          and a connoisseur of awesome design. Welcome to my corner of the
-          digital world!
-        </Paragraph>
-        <Paragraph className=" mt-4">
-          Since the early days of my journey, I&apos;ve been captivated by the
-          art of crafting exceptional digital experiences. As a developer, I
-          thrive on turning lines of code into functional and elegant solutions.
-          My goal is to not just create software, but to build digital marvels
-          that seamlessly merge form and function.
+          Hey, I&apos;m Janhavi — <Highlight> MERN stack developer </Highlight>{" "}
+          passionate about building modern web applications and turning ideas
+          into real-world solutions.
         </Paragraph>
 
         <Paragraph className=" mt-4">
-          But my journey doesn&apos;t stop at coding. With a heart full of words
-          and a mind brimming with ideas, I&apos;ve ventured into the realm of
-          writing. From tech articles that unravel complex concepts to creative
-          tales that ignite the imagination, I weave words to inform, entertain,
-          and inspire.
+          I&apos;ve worked on projects like a{" "}
+          <Highlight>
+            project management SaaS platform, an EdTech application, and a PDF
+            management system
+          </Highlight>{" "}
+          during my internship, where I focused on creating scalable features,
+          improving user experience, and building efficient full-stack
+          workflows.
         </Paragraph>
+
         <Paragraph className=" mt-4">
-          What sets me apart is my unwavering appreciation for design. I believe
-          that aesthetics and usability go hand in hand. My eye for awesome
-          design ensures that every project I undertake not only works
-          flawlessly under the hood but also looks stunning on the surface.
+          I enjoy exploring different areas of web development, solving problems
+          through code, and continuously improving my skills by working on
+          practical projects and learning new technologies.
         </Paragraph>
+
         <Paragraph className=" mt-4">
-          Through this website, I aim to share my insights, experiences, and
-          creations with you. Whether you&apos;re a fellow developer seeking
-          solutions, a fellow writer in search of inspiration, or simply someone
-          who appreciates the finer aspects of design, there&apos;s something
-          here for you.
+          Currently, I&apos;m also learning <Highlight>Next.js</Highlight> and
+          exploring ways to build more optimized and production-ready
+          applications.
         </Paragraph>
+
         <Paragraph className=" mt-4">
-          Join me on this journey of bytes and narratives, logic and creativity,
-          code and prose. Together, we can explore the boundless possibilities
-          of technology and storytelling, all while reveling in the sheer beauty
-          of thoughtful design.
+          Beyond coding, I enjoy <Highlight>dancing</Highlight>, traveling, and
+          discovering new experiences that inspire creativity and fresh
+          perspectives.
         </Paragraph>
+
         <Paragraph className=" mt-4">
-          Thank you for being here, and I can&apos;t wait to embark on this
-          adventure with you.
+          This space is where I share my projects, learning experiences, and
+          insights from my journey in web development.
         </Paragraph>
+
+        <Paragraph className=" mt-4">Thanks for stopping by.</Paragraph>
       </div>
     </div>
   );

@@ -25,20 +25,21 @@ export const Sidebar = () => {
             animate={{ x: 0 }}
             transition={{ duration: 0.2, ease: "linear" }}
             exit={{ x: -200 }}
-            className="px-6  z-[100] py-10 bg-neutral-100 max-w-[14rem] lg:w-fit  fixed lg:relative  h-screen left-0 flex flex-col justify-between"
+            className="px-6 z-[100] pt-14 pb-10 bg-neutral-100 dark:bg-neutral-900 text-secondary dark:text-neutral-300 border-r border-neutral-200 dark:border-neutral-800 max-w-[14rem] lg:w-fit fixed lg:relative h-screen left-0 flex flex-col justify-between transition-colors duration-300"
           >
             <div className="flex-1 overflow-auto">
               <SidebarHeader />
               <Navigation setOpen={setOpen} />
             </div>
-            <div onClick={() => isMobile() && setOpen(false)}>
-              <Badge href="/resume" text="Read Resume" />
+            <div onClick={() => isMobile() && setOpen(false)} className="mb-10">
+              <Badge href="/resume" text="View Resume" />
             </div>
           </motion.div>
         )}
       </AnimatePresence>
       <button
-        className="fixed lg:hidden bottom-4 right-4 h-8 w-8 border border-neutral-200 rounded-full backdrop-blur-sm flex items-center justify-center z-50"
+        // className="fixed lg:hidden bottom-4 right-4 h-8 w-8 border border-neutral-200 rounded-full backdrop-blur-sm flex items-center justify-center z-50"
+        className="fixed lg:hidden bottom-4 right-4 h-8 w-8 border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 rounded-full backdrop-blur-sm flex items-center justify-center z-50 transition-colors duration-300"
         onClick={() => setOpen(!open)}
       >
         <IconLayoutSidebarRightCollapse className="h-4 w-4 text-secondary" />
@@ -65,13 +66,14 @@ export const Navigation = ({
           onClick={() => isMobile() && setOpen(false)}
           className={twMerge(
             "text-secondary hover:text-primary transition duration-200 flex items-center space-x-2 py-2 px-2 rounded-md text-sm",
-            isActive(link.href) && "bg-white shadow-lg text-primary"
+            isActive(link.href) &&
+              "bg-white dark:bg-neutral-800 shadow-lg text-primary dark:text-white",
           )}
         >
           <link.icon
             className={twMerge(
               "h-4 w-4 flex-shrink-0",
-              isActive(link.href) && "text-sky-500"
+              isActive(link.href) && "text-sky-500",
             )}
           />
           <span>{link.label}</span>
@@ -86,13 +88,14 @@ export const Navigation = ({
           key={link.href}
           href={link.href}
           className={twMerge(
-            "text-secondary hover:text-primary transition duration-200 flex items-center space-x-2 py-2 px-2 rounded-md text-sm"
+            "text-secondary hover:text-primary transition duration-200 flex items-center space-x-2 py-2 px-2 rounded-md text-sm",
+            // "text-secondary dark:text-neutral-300 hover:text-primary dark:hover:text-white",
           )}
         >
           <link.icon
             className={twMerge(
               "h-4 w-4 flex-shrink-0",
-              isActive(link.href) && "text-sky-500"
+              isActive(link.href) && "text-sky-500",
             )}
           />
           <span>{link.label}</span>
@@ -102,20 +105,95 @@ export const Navigation = ({
   );
 };
 
+// const SidebarHeader = () => {
+//   return (
+//     <div className="flex space-x-2">
+//       <Image
+//         src="/images/janhavi.jpeg"
+//         alt="Avatar"
+//         height="40"
+//         width="40"
+//         className="object-cover object-top rounded-full flex-shrink-0"
+//       />
+//       <div className="flex text-sm flex-col">
+//         <p className="font-bold text-primary">Janhavi Sangeet</p>
+//         <p className="font-light text-secondary">Full Stack Developer</p>
+//       </div>
+//     </div>
+//   );
+// };
+// const SidebarHeader = () => {
+//   return (
+//     <div className="flex space-x-3 items-center">
+//       <Image
+//         src="/images/janhavi pp.jpeg"
+//         alt="Janhavi Sangeet"
+//         height={40}
+//         width={40}
+//         className="object-cover object-top rounded-full flex-shrink-0 border"
+//       />
+//       <div className="flex text-sm flex-col">
+//         <p className="font-bold text-primary">Janhavi Sangeet</p>
+//         <p className="font-light text-secondary text-xs">
+//           Full Stack Developer (MERN)
+//         </p>
+//       </div>
+//     </div>
+//   );
+// };
 const SidebarHeader = () => {
+  const [openImage, setOpenImage] = useState(false);
+
   return (
-    <div className="flex space-x-2">
-      <Image
-        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1760&q=80"
-        alt="Avatar"
-        height="40"
-        width="40"
-        className="object-cover object-top rounded-full flex-shrink-0"
-      />
-      <div className="flex text-sm flex-col">
-        <p className="font-bold text-primary">John Doe</p>
-        <p className="font-light text-secondary">Developer</p>
+    <>
+      <div className="flex space-x-3 items-center">
+        <Image
+          src="/images/janhavi.png"
+          alt="Janhavi Sangeet"
+          height="48"
+          width="48"
+          onClick={() => setOpenImage(true)}
+          className="object-cover object-top rounded-full flex-shrink-0 border cursor-pointer hover:scale-105 transition duration-300"
+        />
+
+        <div className="flex text-sm flex-col">
+          <p className="font-bold text-primary  dark:text-white text xs">
+            Janhavi Sangeet
+          </p>
+
+          {/* <p className="font-light text-secondary text-xs"> */}
+          <p className="font-light text-primary dark:text-white text-xs ">
+            Full Stack Developer (MERN)
+          </p>
+        </div>
       </div>
-    </div>
+
+      <AnimatePresence>
+        {openImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setOpenImage(false)}
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[200] flex items-center justify-center"
+          >
+            <motion.div
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Image
+                src="/images/janhavi.png"
+                alt="Profile"
+                width={350}
+                height={350}
+                className="rounded-3xl object-cover shadow-2xl"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };

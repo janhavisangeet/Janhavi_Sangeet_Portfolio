@@ -1,0 +1,155 @@
+import { BlogLayout } from "@/components/BlogLayout";
+
+import { CodeWindow } from "@/components/CodeWindow";
+
+export const meta = {
+  date: "2025-06-11",
+  title: "🚀 Deploying My MERN Project (Vite + TypeScript) on Vercel & Render",
+  description:
+    "A personal guide on deploying a full-stack MERN project. See what worked, the mistakes made, and how to avoid them.",
+  image: "/images/article.png",
+  tags: ["MERN", "Deployment", "Vite", "TypeScript", "Vercel", "Render"],
+};
+
+export default (props) => <BlogLayout meta={meta} {...props} />;
+
+Hey everyone! In this blog, I’m sharing my personal experience of deploying a full-stack MERN project. This isn’t a generic guide — you’ll see what worked for me, the mistakes I made, and how you can avoid them.
+
+This is a **Vite + TypeScript** frontend deployed on **Vercel**, and a **Node.js + Express + MongoDB** backend deployed on **Render**. All code and env examples are dummy placeholders, so make sure to use your actual setup.
+
+## 🧩 Tech Stack I Used
+
+- **Frontend:** Vite + React + TypeScript
+- **Backend:** Node.js + Express + TypeScript
+- **Database:** MongoDB Atlas
+- **Deployment:** Vercel (frontend), Render (backend)
+
+## 🏗️ Folder Structure
+
+```text
+project-root/
+├── client/            # Vite + React frontend
+│   ├── src/
+│   ├── index.html
+│   ├── package.json
+│   └── vercel.json    # We'll add this!
+├── server/            # Node.js + Express backend
+│   ├── src/
+│   ├── dist/
+│   ├── package.json
+│   └── tsconfig.json
+└── README.md
+```
+
+````
+
+## 🔐 MongoDB Atlas Setup
+
+1. Created a free-tier cluster.
+2. Added my IP address to the allowlist.
+3. Created a new database user with read/write permissions.
+4. Got the connection string, and stored it as `MONGO_URI` in the backend `.env` file.
+
+📌 **Tip:** Keep your credentials secure and never hard-code them.
+
+
+## 🧪 Backend Deployment on Render
+
+1. Pushed my backend to GitHub.
+2. Logged into Render and clicked "New Web Service".
+3. Connected the GitHub repo.
+4. Set the root directory to `/server`.
+5. Chose:
+   - **Runtime:** Node
+   - **Build Command:** `npm run build`
+   - **Start Command:** `npm start`
+6. Added environment variables like:
+   - `PORT=8000`
+   - `MONGO_URI=your_mongodb_connection_string`
+   - `FRONTEND_ORIGIN=https://your-frontend-url`
+7. Click on the deploy button.
+
+_(Again, use your real values — this is just my placeholder setup.)_
+
+### 🔥 Common Render Mistake
+
+My build was initially failing because of this line in `package.json`:
+
+```json
+"build": "tsc && cp /package.json ./dist"
+```
+
+Make sure to change `/package.json` to just `package.json` like so:
+
+```json
+"build": "tsc && cp package.json ./dist"
+```
+
+This fixed the `cp: cannot stat '/package.json'` error for me.
+
+### ✅ CORS Tip for Render
+
+Ensure `.env` on backend Render has:
+`FRONTEND_ORIGIN=https://your-frontend.vercel.app`
+
+❗ **Important:** Omit trailing slashes or it may cause CORS issues.
+
+## 🌐 Frontend Deployment on Vercel
+
+1. Pushed my Vite project (`client/`) to GitHub.
+2. Went to Vercel, created a new project.
+3. Chose `client` as the root directory.
+4. Vercel detected it was a Vite app. The default build command (`vite build`) and output directory (`dist`) were perfect.
+5. Added these environment variables:
+   - `VITE_BACKEND_URL=https://your-backend.onrender.com`
+6. Click on the deploy button.
+
+**Note:** Use `VITE_` prefix for Vite to expose env vars to the client.
+
+## ✅ vercel.json
+
+To make sure Vercel builds correctly, I added a `vercel.json` file inside the `client/` folder:
+
+```json
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
+```
+
+## 🔄 Final Step: Link Frontend & Backend
+
+After both deployments are successful:
+
+1. Copy the Render backend URL (e.g., `https://your-backend.onrender.com`)
+2. Copy the Vercel frontend URL (e.g., `https://your-frontend.vercel.app`)
+
+Then update your env files:
+
+**On Backend (`server/.env`):** _(Click → Environment → Edit)_
+
+```env
+FRONTEND_ORIGIN=https://your-frontend.vercel.app
+```
+
+**On Frontend (`client/.env`):**
+
+```env
+VITE_BACKEND_URL=https://your-backend-url
+```
+
+🔁 This mutual linking was the final step to make CORS and API calls work properly.
+
+## 🧠 Final Thoughts
+
+Deploying to Vercel and Render wasn’t super hard, but there were some hiccups. The `cp` command issue, CORS errors, and mismatched env values slowed me down a bit—but once fixed, it all worked like a charm.
+
+Hope sharing my experience helps you avoid those issues!
+Have fun building! 💻🎉
+```
+
+````

@@ -24,9 +24,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   } else {
     return {
-      title: "Projects | John Doe",
+      title: "Projects | Janhavi Sangeet",
       description:
-        "John Doe is a developer, writer and speaker. He is a digital nomad and travels around the world while working remotely.",
+        "JI am an MCA graduate with MERN stack skills, strong problem-solving ability, and a willingness to learn. I am motivated, adaptable, and eager to contribute to the organization while growing professionally.",
     };
   }
 }

@@ -1,34 +1,73 @@
+import About from "@/components/About";
+import { Blogs } from "@/components/Blogs";
 import { Container } from "@/components/Container";
 import { Heading } from "@/components/Heading";
 import { Highlight } from "@/components/Highlight";
 import { Paragraph } from "@/components/Paragraph";
 import { Products } from "@/components/Products";
 import { TechStack } from "@/components/TechStack";
-import Image from "next/image";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { Contact } from "@/components/Contact";
+import { getAllBlogs } from "../../lib/getAllBlogs";
 
-export default function Home() {
+export default async function Home() {
+  const allBlogs = await getAllBlogs();
+
+  const blogs = allBlogs.map(({ component, ...rest }) => rest);
   return (
     <Container>
+      <ThemeToggle />
       <span className="text-4xl">👋</span>
-      <Heading className="font-black">Hello there! I&apos;m John</Heading>
+      <Heading className="font-black">
+        Hello there! I&apos;m Janhavi Sangeet
+      </Heading>
       <Paragraph className="max-w-xl mt-4">
-        I&apos;m a full-stack developer that loves{" "}
-        <Highlight>building products</Highlight> and web apps that can impact
-        millions of lives
+        I&apos;m a full-stack developer specializing in the MERN stack,
+        passionate about{" "}
+        <Highlight>building modern and scalable web applications</Highlight>.
       </Paragraph>
       <Paragraph className="max-w-xl mt-4">
-        I&apos;m a senior software engineer with{" "}
-        <Highlight>7 years of experience</Highlight> building scalable web apps
-        that are performance optimized and good looking.
+        As a fresher, I&apos;ve built projects like a{" "}
+        <Highlight>SaaS-based project management system</Highlight> and
+        continuously work on improving my skills in full-stack development.
       </Paragraph>
       <Heading
         as="h2"
         className="font-black text-lg md:text-lg lg:text-lg mt-20 mb-4"
       >
-        What I&apos;ve been working on
+        Projects I&apos;ve Worked On
       </Heading>
       <Products />
       <TechStack />
+      <Heading
+        as="h2"
+        className="font-black text-lg md:text-lg lg:text-lg mt-20 mb-4"
+      >
+        About Me
+      </Heading>
+      <About />
+
+      <Heading
+        as="h2"
+        className="font-black text-lg md:text-lg lg:text-lg mt-20 mb-4"
+      >
+        Projects-What I&apos;ve been worked on
+      </Heading>
+      <Products />
+      <Heading
+        as="h2"
+        className="font-black text-lg md:text-lg lg:text-lg mt-20 mb-4"
+      >
+        Articles & Blogs
+      </Heading>
+      <Blogs blogs={blogs} />
+      <Heading
+        as="h2"
+        className="font-black text-lg md:text-lg lg:text-lg mt-20 mb-4"
+      >
+        Contact
+      </Heading>
+      <Contact />
     </Container>
   );
 }

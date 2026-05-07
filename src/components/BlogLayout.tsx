@@ -38,31 +38,53 @@ export function BlogLayout({
             type="button"
             href="/blog"
             aria-label="Go back to articles"
-            className="group mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition  "
+            className="
+              group
+              mb-4
+              flex
+              h-10
+              w-10
+              items-center
+              justify-center
+              rounded-full
+              bg-white
+              dark:bg-neutral-900
+              shadow-md
+              ring-1
+              ring-zinc-200
+              dark:ring-neutral-700
+              transition
+              hover:scale-105
+            "
           >
-            <ArrowLeftIcon className="h-4 w-4 stroke-zinc-500 transition group-hover:stroke-zinc-700 d" />
+            <ArrowLeftIcon className="h-4 w-4 stroke-zinc-500 dark:stroke-zinc-300 transition group-hover:stroke-zinc-700 dark:group-hover:stroke-white" />
           </Link>
 
-          <Heading className=" py-4">{meta.title}</Heading>
+          <Heading className="py-4 text-black dark:text-white">
+            {meta.title}
+          </Heading>
+
           <time
             dateTime={meta.date}
-            className="flex items-center text-base text-zinc-400 "
+            className="flex items-center text-base text-zinc-400"
           >
-            <Paragraph className=" text-zinc-700">
+            <Paragraph className="text-zinc-600 dark:text-zinc-400">
               {formatDate(meta.date)}
             </Paragraph>
           </time>
-          <div className="w-full mt-4 aspect-w-16 aspect-h-10 bg-gray-100 rounded-lg overflow-hidden xl:aspect-w-16 xl:aspect-h-10 relative">
+
+          <div className="w-full mt-4 aspect-w-16 aspect-h-10 bg-gray-100 dark:bg-neutral-900 rounded-lg overflow-hidden xl:aspect-w-16 xl:aspect-h-10 relative border border-neutral-200 dark:border-neutral-800">
             <Image
               src={meta.image}
               alt="thumbnail"
               height="800"
               width="800"
-              className={`object-cover object-left-top w-full max-h-96`}
+              className="object-cover object-left-top w-full max-h-96"
             />
           </div>
         </header>
-        <Prose className="mt-8">{children}</Prose>
+
+        <Prose className="mt-8 dark:prose-invert">{children}</Prose>
       </article>
     </Container>
   );

@@ -10,11 +10,11 @@ export default function Home() {
   return (
     <Container>
       <span className="text-4xl">💼</span>
-      <Heading className="font-black">Work History</Heading>
+      <Heading className="font-black">Work Experience</Heading>
       <Paragraph className="max-w-xl mt-4">
-        I&apos;m a full-stack developer that loves{" "}
-        <Highlight>building products</Highlight> and web apps that can impact
-        millions of lives
+        Sharing my journey as a <Highlight>MERN stack developer</Highlight> —
+        building projects, learning new technologies, and solving real-world
+        problems.
       </Paragraph>
       <WorkHistory />
     </Container>
