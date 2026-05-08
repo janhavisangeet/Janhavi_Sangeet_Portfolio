@@ -14,11 +14,11 @@ export const TechStack = () => {
     },
     {
       title: "JavaScript",
-      src: "/images/logos/javascript.png",
+      src: "/images/logos/Javascript.png",
     },
     {
       title: "TypeScript",
-      src: "/images/logos/typescript.png",
+      src: "/images/logos/Typescript.png",
     },
     {
       title: "React",
