@@ -14,7 +14,7 @@ export const TechStack = () => {
     },
     {
       title: "JavaScript",
-      src: "/images/logos/Javascript.png",
+      src: "/images/logos/JavaScript.png",
     },
     {
       title: "TypeScript",
