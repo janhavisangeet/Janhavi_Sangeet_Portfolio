@@ -28,7 +28,7 @@ export default async function Home() {
         <Highlight>building modern and scalable web applications</Highlight>.
       </Paragraph>
       <Paragraph className="max-w-xl mt-4">
-        As a fresher, I&apos;ve built projects like a{" "}
+        I&apos;ve built projects like a{" "}
         <Highlight>SaaS-based project management system</Highlight> and
         continuously work on improving my skills in full-stack development.
       </Paragraph>
@@ -40,6 +40,13 @@ export default async function Home() {
         Projects I&apos;ve been working On
       </Heading>
       <Products />
+      <Heading
+        as="h2"
+        className="font-black text-lg md:text-lg lg:text-lg mt-20 mb-4"
+      >
+        WorkExperience
+      </Heading>
+      <WorkHistory />
 
       <Heading
         as="h2"
@@ -62,13 +69,6 @@ export default async function Home() {
         Contact
       </Heading>
       <Contact />
-      <Heading
-        as="h2"
-        className="font-black text-lg md:text-lg lg:text-lg mt-20 mb-4"
-      >
-        WorkExperience
-      </Heading>
-      <WorkHistory />
     </Container>
   );
 }

@@ -18,14 +18,20 @@ export const Sidebar = () => {
 
   return (
     <>
+      {open && isMobile() && (
+        <div
+          onClick={() => setOpen(false)}
+          className="fixed inset-0 bg-black/40 z-[150] lg:hidden"
+        />
+      )}
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ x: -200 }}
+            initial={{ x: "-100%" }}
             animate={{ x: 0 }}
             transition={{ duration: 0.2, ease: "linear" }}
-            exit={{ x: -200 }}
-            className="px-6 z-[100] pt-14 pb-10 bg-neutral-100 dark:bg-neutral-900 text-secondary dark:text-neutral-300 border-r border-neutral-200 dark:border-neutral-800 max-w-[14rem] lg:w-fit fixed lg:relative h-screen left-0 flex flex-col justify-between transition-colors duration-300"
+            exit={{ x: "-100%" }}
+            className="px-6 z-[200] pt-14 pb-10 bg-neutral-100 dark:bg-neutral-900 text-secondary dark:text-neutral-300 border-r border-neutral-200 dark:border-neutral-800 w-[14rem] lg:w-fit fixed lg:relative h-screen left-0 flex flex-col justify-between transition-colors duration-300"
           >
             <div className="flex-1 overflow-auto">
               <SidebarHeader />
