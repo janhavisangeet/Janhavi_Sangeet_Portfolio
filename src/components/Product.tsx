@@ -7,20 +7,29 @@ import { Paragraph } from "./Paragraph";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { IconArrowLeft } from "@tabler/icons-react";
+import { useRouter } from "next/navigation";
 
 export const SingleProduct = ({ product }: { product: Product }) => {
   const [activeImage, setActiveImage] = useState<StaticImageData | string>(
     product.thumbnail,
   );
+  const router = useRouter();
   return (
     <div className="py-10">
-      <Link
+      {/* <Link
         href="/projects"
         className="inline-flex items-center gap-1 group/button rounded-full hover:scale-105 transition bg-gray-800 text-white px-4 py-2 mb-6"
       >
         <IconArrowLeft className="h-4 w-4" />
         Back to Projects
-      </Link>
+      </Link> */}
+      <button
+        onClick={() => router.back()}
+        className="inline-flex items-center gap-1 group/button rounded-full hover:scale-105 transition bg-gray-800 text-white px-4 py-2 mb-6"
+      >
+        <IconArrowLeft className="h-4 w-4" />
+        Back to Projects
+      </button>
       <motion.div
         initial={{
           opacity: 0,

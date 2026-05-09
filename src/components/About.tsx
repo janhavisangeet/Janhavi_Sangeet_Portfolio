@@ -10,7 +10,7 @@ export default function About() {
     "/images/about/profile1.jpeg",
     "/images/about/profile2.jpeg",
     "/images/about/profile3.jpeg",
-    "/images/about/profile4.png",
+    "/images/about/profile4.jpeg",
   ];
   return (
     <div>

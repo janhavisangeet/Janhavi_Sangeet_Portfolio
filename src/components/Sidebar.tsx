@@ -32,7 +32,7 @@ export const Sidebar = () => {
               <Navigation setOpen={setOpen} />
             </div>
             <div onClick={() => isMobile() && setOpen(false)} className="mb-10">
-              <Badge href="/resume" text="View Resume" />
+              <Badge href="/Experience" text="Experience" />
             </div>
           </motion.div>
         )}
@@ -105,42 +105,6 @@ export const Navigation = ({
   );
 };
 
-// const SidebarHeader = () => {
-//   return (
-//     <div className="flex space-x-2">
-//       <Image
-//         src="/images/janhavi.jpeg"
-//         alt="Avatar"
-//         height="40"
-//         width="40"
-//         className="object-cover object-top rounded-full flex-shrink-0"
-//       />
-//       <div className="flex text-sm flex-col">
-//         <p className="font-bold text-primary">Janhavi Sangeet</p>
-//         <p className="font-light text-secondary">Full Stack Developer</p>
-//       </div>
-//     </div>
-//   );
-// };
-// const SidebarHeader = () => {
-//   return (
-//     <div className="flex space-x-3 items-center">
-//       <Image
-//         src="/images/janhavi pp.jpeg"
-//         alt="Janhavi Sangeet"
-//         height={40}
-//         width={40}
-//         className="object-cover object-top rounded-full flex-shrink-0 border"
-//       />
-//       <div className="flex text-sm flex-col">
-//         <p className="font-bold text-primary">Janhavi Sangeet</p>
-//         <p className="font-light text-secondary text-xs">
-//           Full Stack Developer (MERN)
-//         </p>
-//       </div>
-//     </div>
-//   );
-// };
 const SidebarHeader = () => {
   const [openImage, setOpenImage] = useState(false);
 

@@ -9,6 +9,7 @@ import { TechStack } from "@/components/TechStack";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Contact } from "@/components/Contact";
 import { getAllBlogs } from "../../lib/getAllBlogs";
+import { WorkHistory } from "@/components/WorkHistory";
 
 export default async function Home() {
   const allBlogs = await getAllBlogs();
@@ -31,14 +32,15 @@ export default async function Home() {
         <Highlight>SaaS-based project management system</Highlight> and
         continuously work on improving my skills in full-stack development.
       </Paragraph>
+      <TechStack />
       <Heading
         as="h2"
         className="font-black text-lg md:text-lg lg:text-lg mt-20 mb-4"
       >
-        Projects I&apos;ve Worked On
+        Projects I&apos;ve been working On
       </Heading>
       <Products />
-      <TechStack />
+
       <Heading
         as="h2"
         className="font-black text-lg md:text-lg lg:text-lg mt-20 mb-4"
@@ -46,14 +48,6 @@ export default async function Home() {
         About Me
       </Heading>
       <About />
-
-      <Heading
-        as="h2"
-        className="font-black text-lg md:text-lg lg:text-lg mt-20 mb-4"
-      >
-        Projects-What I&apos;ve been worked on
-      </Heading>
-      <Products />
       <Heading
         as="h2"
         className="font-black text-lg md:text-lg lg:text-lg mt-20 mb-4"
@@ -68,6 +62,13 @@ export default async function Home() {
         Contact
       </Heading>
       <Contact />
+      <Heading
+        as="h2"
+        className="font-black text-lg md:text-lg lg:text-lg mt-20 mb-4"
+      >
+        WorkExperience
+      </Heading>
+      <WorkHistory />
     </Container>
   );
 }

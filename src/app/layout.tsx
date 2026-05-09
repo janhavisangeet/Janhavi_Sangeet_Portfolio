@@ -33,10 +33,10 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Sidebar />
 
-          <div className="lg:p-3 flex-1 overflow-y-auto">
+          <div className="w-full lg:p-3 flex-1 overflow-y-auto">
             <div
               className="
-                flex-1
+                w-full
                 min-h-screen
                 bg-white
                 dark:bg-neutral-950
