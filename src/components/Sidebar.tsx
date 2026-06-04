@@ -4,11 +4,10 @@ import { Navlink } from "@/types/navlink";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { twMerge } from "tailwind-merge";
 import { Heading } from "./Heading";
 import { socials } from "@/constants/socials";
-import { Badge } from "./Badge";
 import { AnimatePresence, motion } from "framer-motion";
 import { IconLayoutSidebarRightCollapse } from "@tabler/icons-react";
 import { isMobile } from "@/lib/utils";
@@ -33,18 +32,14 @@ export const Sidebar = () => {
             exit={{ x: "-100%" }}
             className="px-6 z-[200] pt-14 pb-10 bg-neutral-100 dark:bg-neutral-900 text-secondary dark:text-neutral-300 border-r border-neutral-200 dark:border-neutral-800 w-[14rem] lg:w-fit fixed lg:relative h-screen left-0 flex flex-col justify-between transition-colors duration-300"
           >
-            <div className="flex-1 overflow-auto">
+            <div className="flex-1 overflow-auto mb-10">
               <SidebarHeader />
               <Navigation setOpen={setOpen} />
-            </div>
-            <div onClick={() => isMobile() && setOpen(false)} className="mb-10">
-              <Badge href="/Experience" text="Experience" />
             </div>
           </motion.div>
         )}
       </AnimatePresence>
       <button
-        // className="fixed lg:hidden bottom-4 right-4 h-8 w-8 border border-neutral-200 rounded-full backdrop-blur-sm flex items-center justify-center z-50"
         className="fixed lg:hidden bottom-4 right-4 h-8 w-8 border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 rounded-full backdrop-blur-sm flex items-center justify-center z-50 transition-colors duration-300"
         onClick={() => setOpen(!open)}
       >
@@ -60,8 +55,53 @@ export const Navigation = ({
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const pathname = usePathname();
+  const [activeSection, setActiveSection] = useState("home");
 
-  const isActive = (href: string) => pathname === href;
+  useEffect(() => {
+    if (pathname !== "/") return;
+
+    const sections = ["home", "about", "projects", "experience", "blog", "contact"];
+    
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      // Find the entry that is currently intersecting the viewport
+      const visibleEntry = entries.find(entry => entry.isIntersecting);
+      if (visibleEntry) {
+        setActiveSection(visibleEntry.target.id);
+      }
+    };
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-25% 0px -55% 0px", // Trigger when the section occupies the center of viewport
+      threshold: 0,
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [pathname]);
+
+  const isActive = (href: string) => {
+    if (pathname === "/") {
+      const hash = href.split("#")[1] || "home";
+      return activeSection === hash;
+    } else {
+      if (href === "/#blog" && pathname.startsWith("/blog")) {
+        return true;
+      }
+      if (href === "/#projects" && pathname.startsWith("/projects")) {
+        return true;
+      }
+      return false;
+    }
+  };
 
   return (
     <div className="flex flex-col space-y-1 my-10 relative z-[100]">
@@ -93,17 +133,10 @@ export const Navigation = ({
         <Link
           key={link.href}
           href={link.href}
-          className={twMerge(
-            "text-secondary hover:text-primary transition duration-200 flex items-center space-x-2 py-2 px-2 rounded-md text-sm",
-            // "text-secondary dark:text-neutral-300 hover:text-primary dark:hover:text-white",
-          )}
+          target="_blank"
+          className="text-secondary hover:text-primary transition duration-200 flex items-center space-x-2 py-2 px-2 rounded-md text-sm"
         >
-          <link.icon
-            className={twMerge(
-              "h-4 w-4 flex-shrink-0",
-              isActive(link.href) && "text-sky-500",
-            )}
-          />
+          <link.icon className="h-4 w-4 flex-shrink-0" />
           <span>{link.label}</span>
         </Link>
       ))}
